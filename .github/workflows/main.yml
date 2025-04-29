@@ -1,4 +1,4 @@
-name: Deploy mysql-api
+name: Deploy postgres-api
 
 on:
   push:
@@ -21,7 +21,7 @@ jobs:
       - run: npm install -g sequelize-cli@6.2.0
 
       - run: sequelize db:migrate
-      - run: docker build -t danismr03/postgre-soccer:${{github.sha}} .
+      - run: docker build -t danismr03/postgres-soccer:${{github.sha}} .
       - run: docker images
       - run: docker run --name api -p 8080:8080 -d danismr03/postgres-soccer:${{github.sha}} 
       - run: docker ps
